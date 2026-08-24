@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kbas Labs — herramientas internas</title>
+<meta name="description" content="Herramientas internas de Kbas: catálogos, fichas y utilidades del día a día.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#F7F2E9;
+    --arena:#E7DCCB;
+    --arena-borde:#C9B79E;
+    --cuero:#9A6B43;
+    --cuero-claro:#C8A87E;
+    --moka:#5C4632;
+    --tinta:#2B2622;
+    --texto-suave:#7D6650;
+    --blanco:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    font-family:'Jost',sans-serif;
+    background:var(--crema);
+    color:var(--tinta);
+  }
+
+  /* ---------- Cabecera y hero ---------- */
+  .hero{
+    background:var(--arena);
+    border-bottom:1px solid var(--arena-borde);
+  }
+  nav{
+    max-width:1040px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 24px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo img{height:26px;width:auto;display:block}
+  .logo span{
+    font-family:'Space Mono',monospace;font-size:12px;font-weight:700;
+    background:var(--tinta);color:var(--crema);
+    padding:3px 9px;border-radius:6px;letter-spacing:.08em;
+  }
+  nav .enlaces{display:flex;gap:22px}
+  nav .enlaces a{
+    font-family:'Space Mono',monospace;font-size:13px;
+    color:var(--moka);text-decoration:none;
+  }
+  nav .enlaces a:hover,nav .enlaces a:focus-visible{color:var(--cuero)}
+
+  header{
+    max-width:720px;margin:0 auto;text-align:center;
+    padding:56px 24px 72px;
+  }
+  header img{
+    width:min(320px,70%);height:auto;display:block;
+    margin:0 auto 18px;
+  }
+  .subtitulo{
+    margin:0 auto;max-width:460px;
+    font-size:17px;color:var(--moka);line-height:1.55;
+  }
+  .sello{
+    display:inline-block;font-family:'Space Mono',monospace;font-size:12px;
+    background:var(--crema);color:var(--moka);
+    padding:5px 16px;border-radius:14px;margin-top:20px;
+    border:1px solid var(--arena-borde);
+  }
+
+  /* ---------- Zona de herramientas ---------- */
+  main{max-width:1040px;margin:0 auto;padding:48px 24px 72px}
+  .cabecera-seccion{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:22px;
+  }
+  .cabecera-seccion h2{font-size:22px;font-weight:500}
+  .cabecera-seccion small{
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--texto-suave);
+  }
+  .rejilla{
+    display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  }
+  .tarjeta{
+    background:var(--blanco);
+    border:1px solid var(--arena-borde);
+    border-radius:12px;padding:18px;
+    display:flex;flex-direction:column;gap:10px;
+    text-decoration:none;color:inherit;
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  a.tarjeta:hover,a.tarjeta:focus-visible{
+    transform:translateY(-3px);
+    box-shadow:0 6px 18px rgba(43,38,34,.12);
+  }
+  .tarjeta-cab{display:flex;justify-content:space-between;align-items:center}
+  .icono{
+    width:34px;height:34px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;color:var(--crema);
+  }
+  .badge{
+    font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
+    padding:3px 10px;border-radius:10px;letter-spacing:.06em;
+  }
+  .badge.live{background:var(--cuero);color:var(--crema)}
+  .tarjeta h3{font-size:16px;font-weight:500}
+  .tarjeta p{font-size:13.5px;color:var(--texto-suave);line-height:1.55}
+
+  /* Hueco libre */
+  .hueco{
+    background:transparent;
+    border:2px dashed var(--arena-borde);
+    border-radius:12px;padding:18px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;min-height:150px;color:var(--texto-suave);
+  }
+  .hueco .mas{
+    width:34px;height:34px;border-radius:50%;
+    border:2px dashed var(--arena-borde);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;line-height:1;
+  }
+  .hueco p{font-family:'Space Mono',monospace;font-size:11.5px;text-align:center}
+
+  footer{
+    border-top:1px solid var(--arena-borde);
+    padding:26px 24px;text-align:center;
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--texto-suave);
+  }
+  footer a{color:var(--cuero);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <nav>
+    <a class="logo" href="/" aria-label="Kbas Labs, inicio">
+      <img src="kbas-logo.png" alt="Kbas">
+      <span>LABS</span>
+    </a>
+    <div class="enlaces">
+      <a href="#herramientas">Herramientas</a>
+    </div>
+  </nav>
+  <header>
+    <img src="kbas-logo.png" alt="Kbas">
+    <p class="subtitulo">Herramientas internas del equipo. Sube tus archivos, descarga el resultado. Sin instalaciones y sin líos.</p>
+    <span class="sello">desde 1969 · ahora también en digital</span>
+  </header>
+</div>
+
+<main id="herramientas">
+  <div class="cabecera-seccion">
+    <h2>Herramientas</h2>
+    <small>listas para usar</small>
+  </div>
+
+  <div class="rejilla">
+
+    <a class="tarjeta" href="https://kbas-tools-ssfk6bmt5fjmaswqzjymya.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" style="background:var(--cuero)" aria-hidden="true">▦</div>
+        <span class="badge live">LIVE</span>
+      </div>
+      <h3>Fotos a Excel</h3>
+      <p>Sube un Excel con referencias y las fotos (ZIP o sueltas). Devuelve el mismo Excel con la foto de cada referencia en la primera columna.</p>
+    </a>
+
+    <a class="tarjeta" href="https://kbas-fichas-hesjrqs84er3mfvcbb6mix.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" style="background:var(--moka)" aria-hidden="true">▤</div>
+        <span class="badge live">LIVE</span>
+      </div>
+      <h3>Catálogo proveedor</h3>
+      <p>Sube el Excel del ERP y las fotos, elige proveedor y qué datos mostrar, y descarga el PowerPoint del pedido.</p>
+    </a>
+
+    <div class="hueco" aria-label="Hueco libre para una próxima herramienta">
+      <div class="mas" aria-hidden="true">+</div>
+      <p>hueco libre<br>próxima herramienta</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  Kbas · herramientas internas · <a href="https://toodarklabs.com">un proyecto de TooDarkLabs</a>
+</footer>
+
+</body>
+</html>
