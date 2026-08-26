@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kbas Office — herramientas del equipo</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="description" content="Kbas Office: herramientas internas del equipo Kbas. Sube tus archivos, descarga el resultado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta oficial Kbas */
+    --mauve:#A88EA1;      /* Dusty Mauve */
+    --sand:#E1C9AF;       /* Warm Sand */
+    --chocolate:#522003;  /* Deep Chocolate */
+    --ink:#1A1A1A;        /* Ink Black */
+    --blue:#7E9BC9;       /* Dusty Blue */
+    /* Derivados suaves */
+    --sand-borde:#C4A98B;
+    --crema:#FDF9F3;
+    --texto-suave:#7A6A5A;
+    --mauve-claro:#F2E8DC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    font-family:'Jost',sans-serif;
+    background:var(--sand);
+    color:var(--ink);
+  }
+
+  /* ---------- Hero malva ---------- */
+  .hero{
+    background:var(--mauve);
+    border-bottom:1px solid #8F7488;
+  }
+  nav{
+    max-width:1040px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 24px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo img{height:24px;width:auto;display:block}
+  .logo span{
+    font-family:'Space Mono',monospace;font-size:12px;font-weight:700;
+    background:var(--ink);color:var(--sand);
+    padding:3px 9px;border-radius:6px;letter-spacing:.08em;
+  }
+  nav .enlaces{display:flex;gap:22px}
+  nav .enlaces a{
+    font-family:'Space Mono',monospace;font-size:13px;
+    color:var(--mauve-claro);text-decoration:none;
+  }
+  nav .enlaces a:hover,nav .enlaces a:focus-visible{color:var(--ink)}
+
+  header{
+    max-width:720px;margin:0 auto;text-align:center;
+    padding:52px 24px 68px;
+  }
+  header img{
+    width:min(300px,65%);height:auto;display:block;
+    margin:0 auto 18px;
+  }
+  .subtitulo{
+    margin:0 auto;max-width:460px;
+    font-size:17px;color:var(--mauve-claro);line-height:1.55;
+  }
+  .subtitulo b{color:var(--ink);font-weight:600}
+  .sello{
+    display:inline-block;font-family:'Space Mono',monospace;font-size:12px;
+    background:var(--mauve-claro);color:var(--chocolate);
+    padding:5px 16px;border-radius:14px;margin-top:20px;
+  }
+
+  /* ---------- Zona de herramientas ---------- */
+  main{max-width:1040px;margin:0 auto;padding:44px 24px 68px}
+  .cabecera-seccion{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:22px;
+  }
+  .cabecera-seccion h2{font-size:22px;font-weight:600}
+  .cabecera-seccion small{
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--texto-suave);
+  }
+  .rejilla{
+    display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  }
+  .tarjeta{
+    background:var(--crema);
+    border:1px solid var(--sand-borde);
+    border-top:5px solid var(--acento,var(--chocolate));
+    border-radius:12px;padding:18px;
+    display:flex;flex-direction:column;gap:10px;
+    text-decoration:none;color:inherit;
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  a.tarjeta:hover,a.tarjeta:focus-visible{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(26,26,26,.15);
+  }
+  .tarjeta-cab{display:flex;justify-content:space-between;align-items:center}
+  .icono{
+    width:34px;height:34px;border-radius:8px;
+    background:var(--acento,var(--chocolate));
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;color:var(--crema);
+  }
+  .badge{
+    font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
+    padding:3px 10px;border-radius:10px;letter-spacing:.06em;
+    background:var(--chocolate);color:var(--sand);
+  }
+  .tarjeta h3{font-size:16px;font-weight:600}
+  .tarjeta p{font-size:13.5px;color:var(--texto-suave);line-height:1.55}
+
+  /* Hueco libre */
+  .hueco{
+    background:transparent;
+    border:2px dashed var(--sand-borde);
+    border-radius:12px;padding:18px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;min-height:150px;color:var(--texto-suave);
+  }
+  .hueco .mas{
+    width:34px;height:34px;border-radius:50%;
+    border:2px dashed var(--sand-borde);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;line-height:1;
+  }
+  .hueco p{font-family:'Space Mono',monospace;font-size:11.5px;text-align:center}
+
+  footer{
+    border-top:1px solid var(--sand-borde);
+    padding:26px 24px;text-align:center;
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--texto-suave);
+  }
+  footer a{color:var(--chocolate);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <nav>
+    <a class="logo" href="/" aria-label="Kbas Office, inicio">
+      <img src="kbas-logo.png" alt="Kbas">
+      <span>OFFICE</span>
+    </a>
+    <div class="enlaces">
+      <a href="#herramientas">Herramientas</a>
+    </div>
+  </nav>
+  <header>
+    <img src="kbas-logo.png" alt="Kbas">
+    <p class="subtitulo"><b>Herramientas del equipo.</b><br>Sube tus archivos, descarga el resultado. Sin instalaciones y sin líos.</p>
+    <span class="sello">desde 1969 · ahora también en digital</span>
+  </header>
+</div>
+
+<main id="herramientas">
+  <div class="cabecera-seccion">
+    <h2>Herramientas</h2>
+    <small>listas para usar</small>
+  </div>
+
+  <div class="rejilla">
+
+    <a class="tarjeta" style="--acento:var(--chocolate)" target="_blank" rel="noopener" href="https://kbas-tools-ssfk6bmt5fjmaswqzjymya.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">▦</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Fotos a Excel</h3>
+      <p>Sube un Excel con referencias y las fotos (ZIP o sueltas). Devuelve el mismo Excel con la foto de cada referencia en la primera columna.</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--blue)" target="_blank" rel="noopener" href="https://kbas-fichas-hesjrqs84er3mfvcbb6mix.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">▤</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Catálogo proveedor</h3>
+      <p>Sube el Excel del ERP y las fotos, elige proveedor y qué datos mostrar, y descarga el PowerPoint del pedido.</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--mauve)" target="_blank" rel="noopener" href="https://kbas-fotos-pedido.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">◈</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Recopilar fotos</h3>
+      <p>Sube un pedido (PDF o Excel) o cualquier listado con referencias, y las fotos de la temporada. Elige si quieres todas las variantes o solo la principal, y descarga el ZIP.</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--ink)" target="_blank" rel="noopener" href="https://kbas-etiquetas.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">▥</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Códigos EAN</h3>
+      <p>Sube el Excel de la temporada, pega las referencias que necesites (en cualquier orden) y descarga el PDF de etiquetas con código de barras EAN.</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--blue)" target="_blank" rel="noopener" href="https://kbas-renombrar.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">🔤</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Renombrar fotos</h3>
+      <p>Sube las fotos de una sesión y ponles un prefijo de campaña. Se renombran en orden, listas para descargar: KBAS_FW26_001, 002, 003…</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--cuero)" target="_blank" rel="noopener" href="https://kbas-mas-vendidos.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">🏆</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Más vendidos con fotos</h3>
+      <p>Sube el Excel de estadísticas de stock (con referencias, unidades vendidas y las fotos). Devuelve el Excel ordenado de más a menos vendido, con la foto de cada referencia.</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--chocolate)" target="_blank" rel="noopener" href="https://kbas-semaforo.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">📊</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Análisis de colección</h3>
+      <p>Sube el Excel de la colección y las fotos. Devuelve un informe con sell-through, inversión, stock restante y semáforo 🟢🟡🔴 por referencia.</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--blue)" target="_blank" rel="noopener" href="https://kbas-comprimir-pdf.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">🗜️</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Comprimir PDF</h3>
+      <p>Sube el PDF del catálogo (fotos a resolución de imprenta) y lo devuelve comprimido para enviar por mail, sin tocar el diseño ni los logos.</p>
+    </a>
+
+    <a class="tarjeta" style="--acento:var(--mauve)" target="_blank" rel="noopener" href="https://kbas-convertir-imagenes.streamlit.app/">
+      <div class="tarjeta-cab">
+        <div class="icono" aria-hidden="true">🖼️</div>
+        <span class="badge">LIVE</span>
+      </div>
+      <h3>Convertir imágenes</h3>
+      <p>Sube fotos o un ZIP, convierte entre TIF y JPG, y ajusta calidad o tamaño (% o píxeles exactos). Mismo nombre, listo para descargar.</p>
+    </a>
+
+    <div class="hueco" aria-label="Hueco libre para una próxima herramienta">
+      <div class="mas" aria-hidden="true">+</div>
+      <p>hueco libre<br>próxima herramienta</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  Kbas Office · herramientas internas · <a href="https://toodarklabs.com">un proyecto de TooDarkLabs</a>
+</footer>
+
+</body>
+</html>
